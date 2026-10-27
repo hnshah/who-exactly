@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "who-exactly"
+version = "0.2.1"
+description = "Offline evidence-record validation for a Grok Bot research skills pack; no X API client"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["jsonschema>=4.21,<5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

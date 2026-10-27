@@ -1,0 +1,5 @@
+# Exact versions used by CI. requirements-dev.txt keeps looser ranges for local work.
+PyYAML==6.0.3
+jsonschema==4.26.0
+pytest==9.1.1
+skills-ref==0.1.1
