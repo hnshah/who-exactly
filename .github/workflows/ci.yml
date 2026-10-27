@@ -1,0 +1,81 @@
+name: CI
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    name: Tests (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements-ci.txt
+      - name: Offline tests
+        run: python -m pytest -q
+
+  validate:
+    name: Validate skills and repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-ci.txt
+      - name: Shared references in sync with policies/
+        run: |
+          python scripts/build.py
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=all)" || { git status --porcelain; echo "build.py produced changes; commit them"; exit 1; }
+          python scripts/build.py --check
+      - name: Repository validator
+        run: python scripts/validate.py
+      - name: Knowledge notes
+        run: python scripts/knowledge_cli.py validate
+      - name: Official Agent Skills validator (skills-ref)
+        run: |
+          for s in skills/*/; do python -m skills_ref.cli validate "$s"; done
+      - name: No CRLF line endings
+        run: |
+          if git ls-files --eol | grep -E '^i/crlf'; then echo "CRLF found"; exit 1; fi
+
+  package:
+    name: Package and manifest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-ci.txt
+      - name: Build release artifacts and verify manifest
+        run: python scripts/package_release.py --check
+      - name: Tag matches version
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          TAG: ${{ github.ref_name }}
+        run: python scripts/package_release.py --check --check-tag "$TAG"
+      - name: Checksums and reproducibility
+        run: |
+          cd dist && sha256sum -c who-exactly-v*-SHA256SUMS.txt && cd ..
+          python scripts/package_release.py --out-dir /tmp/rebuild
+          for f in dist/*; do cmp "$f" "/tmp/rebuild/$(basename "$f")"; done
+          cat dist/who-exactly-v*-SHA256SUMS.txt
