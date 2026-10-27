@@ -18,7 +18,8 @@ Source release (v0.2.1):
 
 - [x] License chosen: MIT.
 - [x] Privacy and licensing review of every file ([`PUBLIC-RELEASE-REVIEW.md`](PUBLIC-RELEASE-REVIEW.md)).
-- [x] Offline validator, `skills-ref` and test suite pass in CI, and the packaged ZIP re-verifies after extraction.
+- [x] Offline validator, `skills-ref` and test suite pass locally, and the packaged ZIP re-verifies after extraction.
+- [ ] The same checks pass in GitHub Actions.
 - [x] Public copy separates verified behavior from roadmap.
 
 Bot launch (all still open; tracked as GitHub issues):

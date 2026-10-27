@@ -3,7 +3,7 @@
 **Find people already doing the work.**
 A Grok Bot and four portable Agent Skills by Hiten Shah.
 
-> **Status: developer alpha (v0.2.1).** The source, skills, schemas and offline tests are here, and they pass CI. The Grok Bot has **not** launched. Live X research, skill activation inside Grok Bot, and template import into a clean account have **not** been tested yet ([open issues](https://github.com/hnshah/who-exactly/issues)). The name is provisional.
+> **Status: developer alpha (v0.2.1).** The source, skills, schemas and offline tests are here, and all checks pass locally. The GitHub Actions workflow is not active yet (see Known limitations). The Grok Bot has **not** launched. Live X research, skill activation inside Grok Bot, and template import into a clean account have **not** been tested yet ([open issues](https://github.com/hnshah/who-exactly/issues)). The name is provisional.
 
 ## What you get as a founder
 
@@ -149,6 +149,7 @@ The pack carries a single version, in `src/who_exactly/__init__.py`. It must mat
 ## Known limitations
 
 - There has been no live Grok Bot run, no verified public X retrieval, no test of authenticated X plugin reads, and no clean-account template import.
+- The CI workflow (`.github/workflows/ci.yml`) has not run on GitHub yet; the same checks pass locally.
 - There is no benchmark. Nothing like HumanEval exists for this task yet, so no accuracy number is claimed.
 - Public X covers only people who post publicly. When the job is confidential, the right answer may be "no usable public evidence."
 - The offline tests check structure and provenance rules. They cannot tell whether real search results are any good.
