@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "who-exactly"
 version = "0.2.1"
 description = "Offline evidence-record validation for a Grok Bot research skills pack; no X API client"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 dependencies = ["jsonschema>=4.21,<5"]
 
