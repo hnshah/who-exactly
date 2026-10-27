@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Who Exactly Candidate Review v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidate_id", "person_handle", "episode_ids", "category", "reason", "missing_evidence", "contact_status"],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1},
+    "person_handle": {"type": "string", "minLength": 1},
+    "episode_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "category": {"enum": ["included", "possible", "rejected", "unknown"]},
+    "reason": {"type": "string", "minLength": 1},
+    "missing_evidence": {"type": "array", "items": {"type": "string"}},
+    "nonfit_reason": {"type": ["string", "null"]},
+    "contact_status": {"enum": ["not_contacted", "draft", "approved", "invited", "opted_in", "declined"]},
+    "context": {"type": "string"}
+  }
+}

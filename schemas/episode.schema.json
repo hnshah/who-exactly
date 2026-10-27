@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Who Exactly Job Episode v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["episode_id", "source_kind", "retrieval_status", "source_url", "author_handle", "posted_at", "text_excerpt", "evidence_type", "actual_action", "unknowns"],
+  "properties": {
+    "episode_id": {"type": "string", "minLength": 1},
+    "source_kind": {"enum": ["public_x", "connected_x", "user_supplied", "fixture"]},
+    "retrieval_status": {"enum": ["retrieved", "unverified", "fixture"]},
+    "source_url": {"type": "string", "minLength": 1},
+    "author_handle": {"type": "string", "minLength": 1},
+    "posted_at": {"type": "string", "format": "date-time"},
+    "retrieved_at": {"type": ["string", "null"], "format": "date-time"},
+    "text_excerpt": {"type": "string", "minLength": 1},
+    "evidence_type": {"enum": ["firsthand_report", "quoted_other", "third_party_report", "promotion", "hypothetical", "unknown", "fixture"]},
+    "actual_action": {"type": ["string", "null"]},
+    "trigger": {"type": ["string", "null"]},
+    "environment": {"type": ["string", "null"]},
+    "current_method": {"type": ["string", "null"]},
+    "observed_product_use": {"type": "boolean", "default": false},
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "thread_checked": {"type": "boolean", "default": false},
+    "author_attribution_checked": {"type": "boolean", "default": false},
+    "researcher_notes": {"type": "string"}
+  }
+}

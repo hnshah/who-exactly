@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Who Exactly Cohort Member v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidate_id", "stage", "events"],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1},
+    "stage": {"enum": ["discovered", "eligible", "invited", "opted_in", "enabled", "attempted_real_job", "observed_first_value", "repeat_attempted", "declined"]},
+    "events": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["stage", "at", "verified_by"], "properties": {"stage": {"type": "string"}, "at": {"type": "string", "format": "date-time"}, "verified_by": {"type": "string", "minLength": 1}}}},
+    "private_notes_reference": {"type": ["string", "null"]}
+  }
+}

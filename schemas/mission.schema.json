@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Who Exactly Research Mission v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mission_id", "decision", "product_context", "job", "search_mode", "started_at", "searches_run", "episode_ids", "next_question"],
+  "properties": {
+    "mission_id": {"type": "string", "minLength": 1},
+    "decision": {"type": "string", "minLength": 1},
+    "product_context": {"type": "string"},
+    "job": {"type": "string", "minLength": 1},
+    "search_mode": {"enum": ["public", "connected", "provided", "no_search", "history", "fixture"]},
+    "started_at": {"type": "string", "format": "date-time"},
+    "searches_run": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["query", "tool", "at", "result"], "properties": {"query": {"type": "string"}, "tool": {"type": "string"}, "at": {"type": "string", "format": "date-time"}, "result": {"enum": ["retrieved", "failed", "unavailable"]}}}},
+    "episode_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "counterexamples": {"type": "array", "items": {"type": "string"}},
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "next_question": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "warning": "FICTITIOUS FIXTURE. All people, quotes and URLs are invented examples. Never cite or publish these as real X evidence.",
+  "job": "Interact with a GUI application on another Mac during normal development work",
+  "episodes": [
+    {"episode_id":"syn-001","source_kind":"fixture","retrieval_status":"fixture","source_url":"https://example.org/synthetic/001","author_handle":"fictional-gui-dev","posted_at":"2026-10-01T12:00:00Z","text_excerpt":"Synthetic: I had to open an Xcode window on my other Mac, so I switched desks to finish the build.","evidence_type":"fixture","actual_action":"Switch machines to use remote Xcode GUI","trigger":"Need to inspect running app","environment":"Two Macs, interactive GUI work","current_method":"Physically move to second Mac","observed_product_use":false,"unknowns":["frequency","network setup"],"thread_checked":false,"author_attribution_checked":false},
+    {"episode_id":"syn-002","source_kind":"fixture","retrieval_status":"fixture","source_url":"https://example.org/synthetic/002","author_handle":"fictional-ssh-user","posted_at":"2026-10-02T12:00:00Z","text_excerpt":"Synthetic: I have three Macs but SSH and terminal sessions are enough for my work. I don't need remote desktop.","evidence_type":"fixture","actual_action":"Operate other Macs over SSH","trigger":"Remote shell task","environment":"Multiple Macs, terminal-only","current_method":"SSH","observed_product_use":false,"unknowns":[],"thread_checked":false,"author_attribution_checked":false},
+    {"episode_id":"syn-003","source_kind":"fixture","retrieval_status":"fixture","source_url":"https://example.org/synthetic/003","author_handle":"fictional-influencer","posted_at":"2026-10-03T12:00:00Z","text_excerpt":"Synthetic: Remote Macs are the future, try this new product.","evidence_type":"fixture","actual_action":null,"trigger":null,"environment":null,"current_method":null,"observed_product_use":false,"unknowns":["whether the author performed the job"],"thread_checked":false,"author_attribution_checked":false}
+  ],
+  "candidates": [
+    {"candidate_id":"synthetic-c1","person_handle":"fictional-gui-dev","episode_ids":["syn-001"],"category":"included","reason":"Example of firsthand reported interactive GUI work, if a real corroborating post existed","missing_evidence":["real-source validation","product relevance interview"],"contact_status":"not_contacted"},
+    {"candidate_id":"synthetic-c2","person_handle":"fictional-ssh-user","episode_ids":["syn-002"],"category":"rejected","reason":"Existing SSH workflow meets a different job","missing_evidence":[],"nonfit_reason":"No remote GUI use","contact_status":"not_contacted"},
+    {"candidate_id":"synthetic-c3","person_handle":"fictional-influencer","episode_ids":["syn-003"],"category":"unknown","reason":"Promotion without a specific firsthand task","missing_evidence":["job episode"],"contact_status":"not_contacted"}
+  ]
+}
