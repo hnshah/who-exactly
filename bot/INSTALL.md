@@ -119,7 +119,7 @@ Then run [`FIRST-RUN.md`](FIRST-RUN.md).
 
 | Level | Definition | Status for v0.2.1 |
 | --- | --- | --- |
-| Package ready | Validator, `skills-ref` and tests pass; installer dry run is clean | Checked locally for this release; GitHub Actions run pending |
+| Package ready | Validator, `skills-ref` and tests pass; installer dry run is clean | Checked in GitHub Actions CI for this release |
 | Bot installed | Name, role, four enabled skills and tool access verified in the real Grok Bot UI | **Not yet verified** |
 | Research quality ready | An independent check confirms original authors, dates, relevance, negative cases and no invented results | **Not yet verified** |
 | Share ready | A new person imports the template and completes a real task with no creator files, logins or help | **Not yet verified** |
